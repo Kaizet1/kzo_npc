@@ -1,4 +1,4 @@
-"# KzO NPC Dialog
+# KzO NPC Dialog
 
 A FiveM resource for interactive NPC dialog system.
 
