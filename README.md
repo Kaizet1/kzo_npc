@@ -30,4 +30,4 @@ Edit the `config.lua` file to customize the resource settings according to your 
 
 ## 💬 Support
 
-For support, please join our Discord server: [https://discord.gg/MJckFAyE3m](https://discord.gg/MJckFAyE3m)" 
+For support, please join our Discord server: [https://discord.gg/MJckFAyE3m](https://discord.gg/MJckFAyE3m)
