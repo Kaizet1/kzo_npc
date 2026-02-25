@@ -7,7 +7,7 @@
 -- ============================================
 
 ---@type UI
-local UI = exports.iuh_ui:UI()
+local UI = exports.kzo_ui:UI()
 
 -- ============================================
 -- STATE (set once, never re-created)
