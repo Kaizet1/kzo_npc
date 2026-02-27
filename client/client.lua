@@ -332,7 +332,7 @@ openDialogue = function(npcId)
     playDialogueAnimation(npcId)
 
     -- Hide player ped during dialogue for better UX
-    SetEntityVisible(cache.ped, false, false)
+    SetEntityAlpha(cache.ped, 0, false) 
 
     -- Mount UI with all pre-resolved data (no server call needed)
     UI.setFocus(true, true)
@@ -367,7 +367,7 @@ local function closeDialogue()
     end
 
     -- Restore player ped visibility
-    SetEntityVisible(cache.ped, true, true)
+    ResetEntityAlpha(cache.ped)
 
     if Config.Debug then
         print('[iuh_npc] ✓ Dialogue closed')
