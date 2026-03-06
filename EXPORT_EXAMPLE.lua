@@ -6,7 +6,7 @@
 -- ============================================
 --
 -- AVAILABLE EXPORT:
---   exports['iuh_npc']:CreateNPC(npcConfig)
+--   exports['kzo_npc']:CreateNPC(npcConfig)
 --
 --   Parameters:
 --     npcConfig - Table containing NPC configuration (same structure as Config.NPCs)
@@ -28,7 +28,7 @@
 -- ============================================
 
 -- Create an NPC with minimal configuration
-local npcId = exports['iuh_npc']:CreateNPC({
+local npcId = exports['kzo_npc']:CreateNPC({
     name = 'Flower Seller',            -- NPC name displayed in dialogue UI
     model = 'a_f_y_business_01',       -- Female business ped model
     coords = vector4(-269.0, -956.0, 31.22, 207.0),  -- Spawn location (x, y, z, heading)
@@ -53,7 +53,7 @@ print('NPC created with ID:', npcId)
 -- ============================================
 
 -- Create a quest NPC with multiple dialogue branches
-local questNpcId = exports['iuh_npc']:CreateNPC({
+local questNpcId = exports['kzo_npc']:CreateNPC({
     name = 'Mysterious Old Man',
     model = 's_m_m_fiboffice_02',
     coords = vector4(245.5, -1084.5, 29.29, 90.0),
@@ -115,7 +115,7 @@ local vendorLocations = {
 
 -- Create all vendors at once
 for i, vendor in ipairs(vendorLocations) do
-    local npcId = exports['iuh_npc']:CreateNPC({
+    local npcId = exports['kzo_npc']:CreateNPC({
         name = vendor.name,
         model = 'a_m_y_business_02',
         coords = vendor.coords,
@@ -177,7 +177,7 @@ end, false)
 -- CLIENT SIDE (client.lua)
 --[[
 RegisterNetEvent('myresource:createSharedNPC', function(npcData)
-    local npcId = exports['iuh_npc']:CreateNPC({
+    local npcId = exports['kzo_npc']:CreateNPC({
         name = npcData.name,
         model = 's_m_m_autoshop_01',
         coords = npcData.coords,
