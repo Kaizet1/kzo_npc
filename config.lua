@@ -13,7 +13,7 @@
 -- ║                                                                               ║
 -- ║  DYNAMIC NPC CREATION:                                                        ║
 -- ║  You can also create NPCs from other scripts using the export:                ║
--- ║  exports['iuh_npc']:CreateNPC(npcConfig)                                      ║
+-- ║  exports['kzo_npc']:CreateNPC(npcConfig)                                      ║
 -- ║  See EXPORT_EXAMPLE.lua for detailed examples                                 ║
 -- ╚═══════════════════════════════════════════════════════════════════════════════╝
 
@@ -263,4 +263,4 @@ function Config.GetAllNPCs()
     return Config.NPCs
 end
 
-print('[iuh_npc] ✓ Config loaded successfully!')
+print('[kzo_npc] ✓ Config loaded successfully!')

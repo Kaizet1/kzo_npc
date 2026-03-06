@@ -83,7 +83,7 @@ local function removeNPCAtLocation(coords)
             end
             
             if Config.Debug then
-                print(('[iuh_npc] ✓ Removed NPC #%d at duplicate location'):format(id))
+                print(('[kzo_npc] ✓ Removed NPC #%d at duplicate location'):format(id))
             end
             
             return true
@@ -192,7 +192,7 @@ local function spawnNPCs()
         end
 
         if Config.Debug then
-            print(('[iuh_npc] ✓ Spawned NPC #%d: %s at %.1f, %.1f, %.1f'):format(id, npc.name, npc.coords.x, npc.coords.y, npc.coords.z))
+            print(('[kzo_npc] ✓ Spawned NPC #%d: %s at %.1f, %.1f, %.1f'):format(id, npc.name, npc.coords.x, npc.coords.y, npc.coords.z))
         end
     end
 end
@@ -222,7 +222,7 @@ local function playDialogueAnimation(npcId)
     RemoveAnimDict(dict)
 
     if Config.Debug then
-        print(('[iuh_npc] ✓ Playing dialogue anim on NPC #%d: %s / %s'):format(npcId, dict, animName))
+        print(('[kzo_npc] ✓ Playing dialogue anim on NPC #%d: %s / %s'):format(npcId, dict, animName))
     end
 end
 
@@ -241,7 +241,7 @@ local function restoreNpcAnimation(npcId)
     end
 
     if Config.Debug then
-        print(('[iuh_npc] ✓ Restored animation for NPC #%d'):format(npcId))
+        print(('[kzo_npc] ✓ Restored animation for NPC #%d'):format(npcId))
     end
 end
 
@@ -303,7 +303,7 @@ openDialogue = function(npcId)
     local npcData = data[npcId]
     if not npcData then
         if Config.Debug then
-            print(('[iuh_npc] ✗ NPC #%d not found in cached data'):format(npcId))
+            print(('[kzo_npc] ✗ NPC #%d not found in cached data'):format(npcId))
         end
         return
     end
@@ -311,7 +311,7 @@ openDialogue = function(npcId)
     -- Verify start node exists
     if not npcData.dialogue.start then
         if Config.Debug then
-            print(('[iuh_npc] ✗ NPC #%d has no "start" dialogue node'):format(npcId))
+            print(('[kzo_npc] ✗ NPC #%d has no "start" dialogue node'):format(npcId))
         end
         return
     end
@@ -343,7 +343,7 @@ openDialogue = function(npcId)
     })
 
     if Config.Debug then
-        print(('[iuh_npc] ✓ Dialogue opened with NPC #%d: %s'):format(npcId, npcData.name))
+        print(('[kzo_npc] ✓ Dialogue opened with NPC #%d: %s'):format(npcId, npcData.name))
     end
 end
 
@@ -370,7 +370,7 @@ local function closeDialogue()
     ResetEntityAlpha(cache.ped)
 
     if Config.Debug then
-        print('[iuh_npc] ✓ Dialogue closed')
+        print('[kzo_npc] ✓ Dialogue closed')
     end
 end
 
@@ -379,7 +379,7 @@ end
 -- ============================================
 
 -- Player selected a choice with action
-AddEventHandler('iuh_npc:action', function(data)
+AddEventHandler('kzo_npc:action', function(data)
     if not isDialogueOpen then return end
     if not data or not data.action then return end
 
@@ -427,7 +427,7 @@ AddEventHandler('iuh_npc:action', function(data)
 end)
 
 -- Close event from UI (Escape key or close button)
-AddEventHandler('iuh_npc:close', function()
+AddEventHandler('kzo_npc:close', function()
     closeDialogue()
 end)
 
@@ -508,7 +508,7 @@ CreateThread(function()
     interactionThread()
 
     if Config.Debug then
-        print('[iuh_npc] ✓ Client script loaded!')
+        print('[kzo_npc] ✓ Client script loaded!')
     end
 end)
 
@@ -521,13 +521,13 @@ end)
 ---@return number|nil npcId The ID of the created NPC, or nil if failed
 local function spawnDynamicNPC(npcConfig)
     if not npcConfig then
-        print('[iuh_npc] ✗ Invalid NPC config')
+        print('[kzo_npc] ✗ Invalid NPC config')
         return nil
     end
 
     -- Validate required fields
     if not npcConfig.model or not npcConfig.coords or not npcConfig.dialogue then
-        print('[iuh_npc] ✗ NPC config missing required fields (model, coords, dialogue)')
+        print('[kzo_npc] ✗ NPC config missing required fields (model, coords, dialogue)')
         return nil
     end
 
@@ -562,7 +562,7 @@ local function spawnDynamicNPC(npcConfig)
     if Config.InteractionMethod == 'target' then
         exports.ox_target:addLocalEntity(ped, {
             {
-                name = 'iuh_npc_talk_' .. npcId,
+                name = 'kzo_npc_talk_' .. npcId,
                 icon = Config.TargetIcon,
                 label = Config.TargetLabel,
                 distance = Config.InteractDistance,
@@ -619,7 +619,7 @@ local function spawnDynamicNPC(npcConfig)
     }
 
     if Config.Debug then
-        print(('[iuh_npc] ✓ Dynamic NPC #%d created: %s at %.1f, %.1f, %.1f'):format(npcId, npcConfig.name or 'NPC', npcConfig.coords.x, npcConfig.coords.y, npcConfig.coords.z))
+        print(('[kzo_npc] ✓ Dynamic NPC #%d created: %s at %.1f, %.1f, %.1f'):format(npcId, npcConfig.name or 'NPC', npcConfig.coords.x, npcConfig.coords.y, npcConfig.coords.z))
     end
 
     return npcId
@@ -649,7 +649,7 @@ AddEventHandler('onResourceStop', function(resourceName)
     if Config.InteractionMethod == 'target' then
         for id, ped in pairs(spawnedPeds) do
             if DoesEntityExist(ped) then
-                exports.ox_target:removeLocalEntity(ped, 'iuh_npc_talk_' .. id)
+                exports.ox_target:removeLocalEntity(ped, 'kzo_npc_talk_' .. id)
             end
         end
     end
@@ -671,6 +671,6 @@ AddEventHandler('onResourceStop', function(resourceName)
     spawnedBlips = {}
 
     if Config.Debug then
-        print('[iuh_npc] ✓ Resources cleaned up')
+        print('[kzo_npc] ✓ Resources cleaned up')
     end
 end)
